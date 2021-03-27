@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.AboutFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="normal"
+        android:textSize="20sp"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="8sp"
+        android:gravity="center_horizontal"
+        android:text="@string/the_high_institute_of_misrata_libya"
+        android:layout_marginBottom="8dp"
+        android:textFontWeight="700"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+        <LinearLayout
+            android:id="@+id/employee_select_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <fragment
+                android:name="com.almaki.employeeabsense.ui.MapsFragment"
+                android:layout_width="match_parent"
+
+                android:layout_height="250dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

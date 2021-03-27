@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Employee Absense</string>
+    <string name="enter_to_employee_account">Enter to your account</string>
+    <string name="enter_employee_no">Employee NO</string>
+    <string name="enter_employee_password">Enter password</string>
+    <string name="sign_in">Login</string>
+    <string name="login">Login</string>
+    <string name="employee_record_dialy">Record dialy record</string>
+    <string name="Home">Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about">About</string>
+    <string name="attendance_registration">Attendance registration</string>
+    <string name="record_attendance_absence">Record of attendance and absence</string>
+    <string name="employee_location">Employee Location</string>
+    <string name="employee_occupation">Employee Occupation</string>
+    <string name="employee_birth_date">Employee Birth date</string>
+    <string name="invalid_credentials">Invalid credentials or user not registered</string>
+    <string name="institute_name">High institute of Misrata</string>
+    <string name="the_high_institute_of_misrata_libya">The High institute of Misrata Libya</string>
+    <string name="put_your_phone_on_qr_code">Put your phone on qr code</string>
+    <string name="register_daily">Register daily</string>
+
+    <!--
+    ادخل كلمة المرور
+    ادخل الرقم الوظيفي
+    تسجيل الدخول
+    الدخول لحساب الموظف
+    -->
+</resources>
