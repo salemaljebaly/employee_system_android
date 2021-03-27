@@ -7,13 +7,26 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".ui.QRCodeFragment">
+    <!-- todo add icon   -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/scan_code"
+        android:id="@+id/btn_come_at"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
         android:layout_marginTop="24dp"
+        android:text="@string/register_daily"
+        android:textAllCaps="false"
+        android:elevation="10dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_leave_at"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_marginTop="12dp"
         android:text="@string/register_daily"
         android:textAllCaps="false"
         android:elevation="10dp"

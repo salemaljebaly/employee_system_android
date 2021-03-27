@@ -5,7 +5,7 @@ data class EmployeeDailyRecordResponse(
 	val leave_at: String,
 	val code_string: String,
 	val __v: Int,
-	val id: String,
+	val _id: String,
 	val employee: String,
 	val come_at: String,
 	val updatedAt: String

@@ -7,10 +7,7 @@ import com.almaki.employeeabsense.model.response.LoginSuccessResponse
 import com.almaki.employeeabsense.model.response.ProfileResponse
 import retrofit2.Call
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface LoginInterface {
 
@@ -40,12 +37,22 @@ interface LoginInterface {
     ): Call<EmployeeDailyRecordResponse>
 
 
-
-
     /** ------------------------------------------------------------------------------------------//
      * @param authorization ist a token passed to system to get all daily records
      * @return LoginSuccessResponse object
      * ------------------------------------------------------------------------------------------ */
     @GET("api/dailyrecords/")
     fun getEmployeeDailyRecords(@Header("x-auth-token") authorization: String): Call<ArrayList<EmployeeDailyRecordResponse>>
+
+
+    /** ------------------------------------------------------------------------------------------//
+     * @param authorization ist a token passed to system to get all daily records
+     * @return LoginSuccessResponse object
+     * ------------------------------------------------------------------------------------------ */
+    @PUT("api/dailyrecords/{id}")
+    fun updateEmployeeDailyRecords(
+        @Header("x-auth-token") authorization: String,
+        @Path("id") id: String,
+        @Body codeRequest: CodeRequest
+    ): Call<EmployeeDailyRecordResponse>
 }
