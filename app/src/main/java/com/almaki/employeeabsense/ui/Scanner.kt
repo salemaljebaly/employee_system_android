@@ -2,13 +2,18 @@ package com.almaki.employeeabsense.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.AttributeSet
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.almaki.employeeabsense.MainActivity
 import com.almaki.employeeabsense.R
 import com.almaki.employeeabsense.api.LoginInterface
 import com.almaki.employeeabsense.api.ServiceBuilder
@@ -27,6 +32,7 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
+import kotlinx.android.synthetic.main.fragment_q_r_code.*
 import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Response
@@ -38,8 +44,9 @@ class Scanner : AppCompatActivity() {
     var scannView: CodeScannerView? = null
     private lateinit var  userPreferences: UserPreferences
     private lateinit var dailyRecordResponse: EmployeeDailyRecordResponse
-    private lateinit var btn_come_at : MaterialButton
-    private lateinit var btn_leave_at : MaterialButton
+    // todo disable btn_come_at for 24 our
+    // todo disable btn_leave_at for 24 our
+    // todo use current location to prevent register from other place
     private var state : Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,23 +55,21 @@ class Scanner : AppCompatActivity() {
         userPreferences = UserPreferences(this)
         scannView = findViewById(R.id.scannerView)
         codeScanner = CodeScanner(this, scannView as CodeScannerView)
-//        btn_come_at = findViewById(R.id.btn_come_at)
-//        btn_come_at = findViewById(R.id.btn_come_at)
+
         /** ---------------------------------------------------------------------------- */
         state = intent.getIntExtra("state", 0)
         codeScanner!!.decodeCallback =
             DecodeCallback { result: Result -> runOnUiThread {
                 if(state == 0){
                     setEmployeeDailyRecord(authorization = userPreferences.getUserAuth(), code_string =  result.text)
-                    Log.e("btn_come_ate", "false")
-//                    btn_come_at.isEnabled = false
                     Handler(Looper.getMainLooper()).postDelayed({
-//                        btn_come_at.isEnabled = true
-                        Log.e("btn_come_ate", "true")
+                        // todo fix btn
+                        GlobalMembers.BTN_COME_AT_STATE = false
                     }, 10000)
                 } else {
-                    Log.e("updateEmployeeDaily", "result" + GlobalMembers.DAILY_RECORD_ID)
                     updateEmployeeDailyRecords(authorization = userPreferences.getUserAuth(),GlobalMembers.DAILY_RECORD_ID ,code_string =  result.text)
+
+                    GlobalMembers.BTN_COME_AT_STATE = false
                 }
                 this.onBackPressed()
             } }

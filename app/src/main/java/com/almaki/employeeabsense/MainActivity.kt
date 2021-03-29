@@ -2,9 +2,11 @@ package com.almaki.employeeabsense
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.almaki.employeeabsense.helper.UserLocation
 import com.almaki.employeeabsense.helper.UserPreferences
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -24,6 +26,21 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         // navigate to fragment with where id = fragment name
         bottomNavigation.setupWithNavController(navController)
+        getUserLocation()
+    }
+
+
+    /** =========================================================================================
+     * get current location for user
+     *
+     * */
+    private fun getUserLocation() {
+        val userLocation: UserLocation = UserLocation(this)
+        Log.e("", userLocation.checkPermission().toString())
+        Log.e("", userLocation.isLocationEnabled().toString())
+        userLocation.requestPermission()
+        userLocation.getLastLocation()
 
     }
+    /** ========================================================================================= */
 }

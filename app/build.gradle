@@ -77,7 +77,11 @@ dependencies {
     implementation 'com.budiyev.android:code-scanner:2.1.0'
 
     //
-
     implementation 'com.karumi:dexter:6.0.0'
+
+    // google play services map
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.libraries.places:places:2.4.0'
+    // --------------------------------------------------------------------- //
 
 }

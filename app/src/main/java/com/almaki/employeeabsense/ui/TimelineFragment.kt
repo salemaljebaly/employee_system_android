@@ -70,12 +70,15 @@ class TimelineFragment : Fragment() {
                 response: Response<ArrayList<EmployeeDailyRecordResponse>>
             ) {
                 if (response.isSuccessful) {
-                    Log.e("response", response.body()?.get(0)?.come_at.toString() )
-                    daily_records = response.body()!!
-                    mLayoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-                    recyclerViewDailyRecords.layoutManager = mLayoutManager
-                    mAdapter = DailyRecordsAdapter(daily_records)
-                    recyclerViewDailyRecords.adapter = mAdapter
+                    if(response.body() != null){
+                        daily_records = response.body()!!
+                        mLayoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+                        recyclerViewDailyRecords.layoutManager = mLayoutManager
+                        mAdapter = DailyRecordsAdapter(daily_records)
+                        recyclerViewDailyRecords.adapter = mAdapter
+                    }else{
+//                        timelineText.visibility = View.VISIBLE
+                    }
                 }
             }
 

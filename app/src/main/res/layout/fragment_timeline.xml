@@ -16,6 +16,16 @@
         android:clipToPadding="false"
         tools:listitem="@layout/record_item"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    <TextView
+        android:id="@+id/timelineText"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/there_no_daily_records"
+        android:textSize="20sp"
+        android:layout_gravity="center" />
+
+
 
 
 

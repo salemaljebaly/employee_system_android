@@ -19,5 +19,21 @@
         app:frameThickness="2dp"
         android:layout_gravity="center"
         app:maskColor="#77000000" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="250dp">
+        <LinearLayout
+            android:id="@+id/employee_select_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <fragment
+                android:name="com.almaki.employeeabsense.ui.MapsFragment"
+                android:layout_width="match_parent"
 
+                android:layout_height="250dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
 </RelativeLayout>

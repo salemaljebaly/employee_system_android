@@ -1,5 +1,7 @@
 package com.almaki.employeeabsense.ui
 
+import android.graphics.Color
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -8,25 +10,33 @@ import androidx.navigation.fragment.findNavController
 import com.almaki.employeeabsense.R
 import com.almaki.employeeabsense.api.LoginInterface
 import com.almaki.employeeabsense.api.ServiceBuilder
+import com.almaki.employeeabsense.helper.GlobalMembers
 import com.almaki.employeeabsense.helper.HandleUI
 import com.almaki.employeeabsense.helper.UserPreferences
 import com.almaki.employeeabsense.model.response.ProfileResponse
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.*
 import com.google.android.material.button.MaterialButton
 import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Response
 import java.lang.NullPointerException
+import kotlin.math.log
 
 class HomeFragment : Fragment() , View.OnClickListener{
 
     lateinit var profileResponse: ProfileResponse
     private lateinit var  userPreferences: UserPreferences
+
     /** ========================================================================================= */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // enable option menu in this fragment
         setHasOptionsMenu(true)
         userPreferences = UserPreferences(requireContext())
+        // todo run map fragment with out ui
     }
     /** ========================================================================================= */
     override fun onCreateView(
@@ -53,6 +63,7 @@ class HomeFragment : Fragment() , View.OnClickListener{
             toolbarVisible = true
         )
         super.onViewCreated(view, savedInstanceState)
+
     }
     /** ========================================================================================= */
     override fun onClick(v: View?) {
@@ -113,5 +124,6 @@ class HomeFragment : Fragment() , View.OnClickListener{
         }
     }
     /** ========================================================================================= */
+
 
 }
