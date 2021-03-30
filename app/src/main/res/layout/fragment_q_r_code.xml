@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="55dp"
         android:layout_marginTop="24dp"
-        android:text="@string/register_daily"
+        android:text="@string/record_attendance"
         android:textAllCaps="false"
         android:elevation="10dp"
         />
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="55dp"
         android:layout_marginTop="12dp"
-        android:text="@string/register_daily"
+        android:text="@string/leave_registration"
         android:textAllCaps="false"
         android:elevation="10dp"
         />

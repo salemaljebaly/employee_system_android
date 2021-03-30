@@ -20,6 +20,8 @@
     <string name="register_daily">Register daily</string>
     <string name="there_no_daily_records">There no daily records</string>
     <string name="cant_register_out_of_buildig">You can\'t register out of building</string>
+    <string name="record_attendance">Record attendance</string>
+    <string name="leave_registration">Leave registration</string>
 
     <!--
     ادخل كلمة المرور

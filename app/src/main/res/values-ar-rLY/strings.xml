@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Employee Absense</string>
+    <string name="enter_to_employee_account">ادخل بيانات حسابك</string>
+    <string name="enter_employee_no">الرقم الوظيفي</string>
+    <string name="enter_employee_password">ادخل كلمة المرور</string>
+    <string name="sign_in">تسجيل</string>
+    <string name="login">تسجيل</string>
+    <string name="employee_record_dialy">تسجيل حظور يومي</string>
+    <string name="Home">الرئيسية</string>
+    <string name="about">حول التطبيق</string>
+    <string name="attendance_registration">تسجيل حظور</string>
+    <string name="record_attendance_absence">تسجيل الحظور والأنصراف</string>
+    <string name="employee_location">موقع الموظف</string>
+    <string name="employee_occupation">الوظيفة</string>
+    <string name="employee_birth_date">تاريخ الميلاد</string>
+    <string name="invalid_credentials">البيانات غير صحيحة</string>
+    <string name="institute_name">المعهد العالي للعلوم التقنية مصراتة</string>
+    <string name="the_high_institute_of_misrata_libya">المعهد العالي للعلوم التقنية مصراتة</string>
+    <string name="put_your_phone_on_qr_code">ضع جهازك على الكود</string>
+    <string name="register_daily">السجل اليومي</string>
+    <string name="there_no_daily_records">لاتوجد بيانات لتسجيل !</string>
+    <string name="cant_register_out_of_buildig">لا تستطيع التسجيل خارج مبنى المعهد</string>
+    <string name="record_attendance">تسجيل حظور</string>
+    <string name="leave_registration">تسجيل انصراف</string>
+</resources>
