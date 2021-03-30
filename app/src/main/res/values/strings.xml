@@ -22,6 +22,11 @@
     <string name="cant_register_out_of_buildig">You can\'t register out of building</string>
     <string name="record_attendance">Record attendance</string>
     <string name="leave_registration">Leave registration</string>
+    <string name="employee_number">Employee Number</string>
+    <string name="employee_phone">Employee phone</string>
+    <string name="employee_email">Employee Email</string>
+    <string name="you_are_registered_in_system">You are successfully register in this day</string>
+    <string name="logout">Logout</string>
 
     <!--
     ادخل كلمة المرور

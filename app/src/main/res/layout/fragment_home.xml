@@ -86,7 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -100,8 +100,8 @@
                             android:textStyle="normal"
                             android:textSize="16sp"
                             android:lineSpacingExtra="8sp"
-                            android:layout_weight="1"
-                            android:text="Employee Number"
+                            android:layout_alignParentStart="true"
+                            android:text="@string/employee_number"
                             />
                         <TextView
                             android:id="@+id/employee_profile_no"
@@ -109,16 +109,17 @@
                             android:layout_height="wrap_content"
                             android:textStyle="normal"
                             android:textSize="16sp"
+                            android:layout_alignParentEnd="true"
                             android:textAlignment="textEnd"
                             android:lineSpacingExtra="8sp"
                             android:layout_weight="1"
                             android:text="10002"
                             />
-                    </LinearLayout>
+                    </RelativeLayout>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp" />
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -132,8 +133,9 @@
                             android:textStyle="normal"
                             android:textSize="16sp"
                             android:lineSpacingExtra="8sp"
+                            android:layout_alignParentStart="true"
                             android:layout_weight="1"
-                            android:text="Employee phone"
+                            android:text="@string/employee_phone"
                             />
                         <TextView
                             android:id="@+id/employee_phone"
@@ -141,16 +143,16 @@
                             android:layout_height="wrap_content"
                             android:textStyle="normal"
                             android:textSize="16sp"
-                            android:textAlignment="textEnd"
+                            android:layout_alignParentEnd="true"
                             android:lineSpacingExtra="8sp"
                             android:layout_weight="1"
                             android:text="0914031050"
                             />
-                    </LinearLayout>
+                    </RelativeLayout>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp" />
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -165,8 +167,8 @@
                             android:textStyle="normal"
                             android:textSize="16sp"
                             android:lineSpacingExtra="8sp"
-                            android:layout_weight="1"
-                            android:text="Employee Email"
+                            android:layout_alignParentStart="true"
+                            android:text="@string/employee_email"
                             />
                         <TextView
                             android:id="@+id/employee_email"
@@ -176,14 +178,14 @@
                             android:textSize="16sp"
                             android:textAlignment="textEnd"
                             android:lineSpacingExtra="8sp"
-                            android:layout_weight="1"
+                            android:layout_alignParentEnd="true"
                             android:text="almaki@gmail.com"
                             />
-                    </LinearLayout>
+                    </RelativeLayout>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"/>
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -198,7 +200,7 @@
                             android:textStyle="normal"
                             android:textSize="16sp"
                             android:lineSpacingExtra="8sp"
-                            android:layout_weight="1"
+                            android:layout_alignParentStart="true"
                             android:text="@string/employee_location"
                             />
                         <TextView
@@ -209,13 +211,14 @@
                             android:textSize="16sp"
                             android:textAlignment="textEnd"
                             android:lineSpacingExtra="8sp"
-                            android:layout_weight="1"
+                            android:layout_alignParentEnd="true"
+
                             android:text="Misrata"
                             />
-                    </LinearLayout>
+                    </RelativeLayout>
 
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -229,7 +232,7 @@
                             android:textStyle="normal"
                             android:textSize="16sp"
                             android:lineSpacingExtra="8sp"
-                            android:layout_weight="1"
+                            android:layout_alignParentStart="true"
                             android:text="@string/employee_occupation"
                             />
                         <TextView
@@ -240,11 +243,11 @@
                             android:textSize="16sp"
                             android:textAlignment="textEnd"
                             android:lineSpacingExtra="8sp"
-                            android:layout_weight="1"
+                            android:layout_alignParentEnd="true"
                             android:text="Manager"
                             />
-                    </LinearLayout>
-                    <LinearLayout
+                    </RelativeLayout>
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -258,7 +261,7 @@
                             android:textStyle="normal"
                             android:textSize="16sp"
                             android:lineSpacingExtra="8sp"
-                            android:layout_weight="1"
+                            android:layout_alignParentStart="true"
                             android:text="@string/employee_birth_date"
                             />
                         <TextView
@@ -269,10 +272,10 @@
                             android:textSize="16sp"
                             android:textAlignment="textEnd"
                             android:lineSpacingExtra="8sp"
-                            android:layout_weight="1"
+                            android:layout_alignParentEnd="true"
                             android:text="1994"
                             />
-                    </LinearLayout>
+                    </RelativeLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -306,7 +309,7 @@
         android:layout_height="55dp"
         android:layout_marginTop="24dp"
         android:drawableStart="@drawable/ic_baseline_how_to_reg_24"
-        android:text="Logout"
+        android:text="@string/logout"
         android:textAllCaps="false"
         android:elevation="10dp"
         android:layout_alignParentBottom="true"

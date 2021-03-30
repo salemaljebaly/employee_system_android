@@ -6,7 +6,7 @@
     <string name="enter_employee_password">ادخل كلمة المرور</string>
     <string name="sign_in">تسجيل</string>
     <string name="login">تسجيل</string>
-    <string name="employee_record_dialy">تسجيل حظور يومي</string>
+    <string name="employee_record_dialy">تسجيل حضور يومي</string>
     <string name="Home">الرئيسية</string>
     <string name="about">حول التطبيق</string>
     <string name="attendance_registration">تسجيل حظور</string>
@@ -21,6 +21,11 @@
     <string name="register_daily">السجل اليومي</string>
     <string name="there_no_daily_records">لاتوجد بيانات لتسجيل !</string>
     <string name="cant_register_out_of_buildig">لا تستطيع التسجيل خارج مبنى المعهد</string>
-    <string name="record_attendance">تسجيل حظور</string>
+    <string name="record_attendance">تسجيل حضور</string>
     <string name="leave_registration">تسجيل انصراف</string>
+    <string name="employee_number">الرقم الوظيفي</string>
+    <string name="employee_phone">رقم الهاتف</string>
+    <string name="employee_email">الإيميل</string>
+    <string name="you_are_registered_in_system">تم تسجيل حضورك بنجاح</string>
+    <string name="logout">تسجيل خروج</string>
 </resources>
