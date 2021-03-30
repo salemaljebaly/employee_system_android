@@ -7,8 +7,6 @@
     <string name="login">Login</string>
     <string name="employee_record_dialy">Record dialy record</string>
     <string name="Home">Home</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="about">About</string>
     <string name="attendance_registration">Attendance registration</string>
     <string name="record_attendance_absence">Record of attendance and absence</string>
@@ -21,6 +19,7 @@
     <string name="put_your_phone_on_qr_code">Put your phone on qr code</string>
     <string name="register_daily">Register daily</string>
     <string name="there_no_daily_records">There no daily records</string>
+    <string name="cant_register_out_of_buildig">You can\'t register out of building</string>
 
     <!--
     ادخل كلمة المرور

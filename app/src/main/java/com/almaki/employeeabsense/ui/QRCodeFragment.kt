@@ -9,18 +9,21 @@ import androidx.fragment.app.Fragment
 import com.almaki.employeeabsense.R
 import com.almaki.employeeabsense.helper.GlobalMembers
 import com.almaki.employeeabsense.helper.HandleUI
+import com.almaki.employeeabsense.helper.UserLocation
+import com.almaki.employeeabsense.helper.UserPreferences
 import kotlinx.android.synthetic.main.fragment_q_r_code.*
 
 
 class QRCodeFragment : Fragment() {
+    private lateinit var  userPreferences: UserPreferences
 
     /** ========================================================================================= */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
         /** ----------------------------------------------------------------------------------- */
-
-
+        userPreferences = UserPreferences(requireContext())
+        /** ----------------------------------------------------------------------------------- */
     }
     /** ========================================================================================= */
     override fun onCreateView(
@@ -33,20 +36,40 @@ class QRCodeFragment : Fragment() {
     /** ========================================================================================= */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        btn_come_at.setOnClickListener{
-            val intent = Intent(requireContext().applicationContext,
-                Scanner::class.java)
-            intent.putExtra("state", 0)
-            startActivity(intent)
+        val state : Boolean = userPreferences.getUserBuildingState()
+        if(!state){
+            btn_come_at.isEnabled = false
+            btn_leave_at.isEnabled = false
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.cant_register_out_of_buildig),
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
-        btn_leave_at.setOnClickListener{
-            val intent = Intent(requireContext().applicationContext,
-            Scanner::class.java)
-            intent.putExtra("state", 1)
-            startActivity(intent)
+        if(!GlobalMembers.BTN_COME_AT_STATE){
+            btn_come_at.isEnabled = false
         }
+
+        if(!GlobalMembers.BTN_LEAVE_AT_STATE){
+            btn_leave_at.isEnabled = false
+        }
+
+            btn_come_at.setOnClickListener{
+                val intent = Intent(requireContext().applicationContext,
+                    Scanner::class.java)
+                intent.putExtra("state", 0)
+                startActivity(intent)
+            }
+
+            btn_leave_at.setOnClickListener{
+                val intent = Intent(requireContext().applicationContext,
+                    Scanner::class.java)
+                intent.putExtra("state", 1)
+                startActivity(intent)
+            }
+
+        Log.e("onViewCreated", userPreferences.getUserBuildingState().toString())
 
         HandleUI.setToolBarFunctions(
             requireActivity(), getString(R.string.attendance_registration), true,
@@ -54,28 +77,23 @@ class QRCodeFragment : Fragment() {
         )
     }
 
-    override fun onResume() {
-        Log.e("onResume", GlobalMembers.BTN_COME_AT_STATE.toString())
-        super.onResume()
+
+    /** =========================================================================================
+     * get current location for user
+     *
+     * */
+    private fun getUserLocation() {
+        val userLocation: UserLocation = UserLocation(requireContext())
+        Log.e("", userLocation.checkPermission().toString())
+        Log.e("", userLocation.isLocationEnabled().toString())
+        userLocation.requestPermission()
+        userLocation.getLastLocation()
+
     }
 
     override fun onStart() {
-        Log.e("onStart", GlobalMembers.BTN_COME_AT_STATE.toString())
-        if(!GlobalMembers.BTN_COME_AT_STATE){
-            btn_come_at.isEnabled = false
-            Toast.makeText(
-                requireContext(),
-                "You cant register more than one time in one day",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+        getUserLocation()
         super.onStart()
     }
-//
-//    override fun onStop() {
-//        Log.e("onStop", "true")
-//        super.onStop()
-//    }
-
 
 }

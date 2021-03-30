@@ -45,7 +45,6 @@ class Validate(val view: View, val context: FragmentActivity) {
      * */
 
     fun validateAllFields(inputs : List<TextInputEditText>, inputLayouts : List<TextInputLayout>, materialButton : MaterialButton) {
-        // todo fix to check all inputs not only one
         for (input in inputs){
             input.doOnTextChanged { inputText, _, _, count ->
                 if(inputText.toString() != "" && inputText != null){

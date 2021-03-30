@@ -7,10 +7,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.almaki.employeeabsense.R
 import com.almaki.employeeabsense.helper.GlobalMembers
 import com.almaki.employeeabsense.helper.UserLocation
+import com.almaki.employeeabsense.helper.UserPreferences
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -18,19 +20,20 @@ import com.google.android.gms.maps.model.*
 
 class MapsFragment : Fragment() {
     var currentSelect: Marker? = null
+    lateinit var userPreferences: UserPreferences
     /** ========================================================================================= */
     private val callback = OnMapReadyCallback { googleMap ->
         /** ------------------------------------------------------------------------------------ */
+        getUserLocation()
         currentSelect = googleMap.addMarker(
             MarkerOptions().position(GlobalMembers.latLag).title("current place")
         )
-
-
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(GlobalMembers.latLag, 12f))
-
+        // 32.369850459699116, 15.086221852647832 | 32.36412808975193, 15.160476803384258
+        val targetLatLng : LatLng = LatLng(32.369850459699116, 15.086221852647832)
         val mapCircle : Circle = googleMap.addCircle(
-            CircleOptions().center(LatLng(32.36565153088628, 15.16056886316602))
-                .radius(1000.0)
+            CircleOptions().center(targetLatLng)
+                .radius(400.0)
                 .strokeColor(Color.RED)
         )
         val distance = FloatArray(2)
@@ -43,14 +46,15 @@ class MapsFragment : Fragment() {
         )
 
         GlobalMembers.IS_IN_EMPLOYEE_BUILDING = distance[0] <= mapCircle.radius
+        userPreferences.saveBuildingState(distance[0] <= mapCircle.radius)
 
-
-        Log.e("IS_IN_EMPLOYEE_BUILDING", GlobalMembers.IS_IN_EMPLOYEE_BUILDING.toString())
-//        val high_institute_misrata = LatLng(32.37063287685728, 15.086193059308114)
-//        googleMap.addMarker(MarkerOptions().position(high_institute_misrata).title(getString(R.string.institute_name)))
-//        googleMap.moveCamera(CameraUpdateFactory.newLatLng(high_institute_misrata))
     }
 
+    /** ========================================================================================= */
+    override fun onCreate(savedInstanceState: Bundle?) {
+        userPreferences = UserPreferences(requireContext())
+        super.onCreate(savedInstanceState)
+    }
     /** ========================================================================================= */
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,5 +70,17 @@ class MapsFragment : Fragment() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
 
+    }
+
+    /** =========================================================================================
+     * get current location for user
+     *
+     * */
+    private fun getUserLocation(){
+        val userLocation: UserLocation = UserLocation(requireContext())
+        Log.e("", userLocation.checkPermission().toString())
+        Log.e("", userLocation.isLocationEnabled().toString())
+        userLocation.requestPermission()
+        userLocation.getLastLocation()
     }
 }

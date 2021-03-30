@@ -3,6 +3,7 @@ package com.almaki.employeeabsense.ui
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -13,6 +14,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import com.almaki.employeeabsense.MainActivity
 import com.almaki.employeeabsense.R
 import com.almaki.employeeabsense.api.LoginInterface
@@ -38,16 +40,20 @@ import retrofit2.Call
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.system.exitProcess
 
 class Scanner : AppCompatActivity() {
     var codeScanner: CodeScanner? = null
     var scannView: CodeScannerView? = null
-    private lateinit var  userPreferences: UserPreferences
+    private lateinit var userPreferences: UserPreferences
     private lateinit var dailyRecordResponse: EmployeeDailyRecordResponse
+
     // todo disable btn_come_at for 24 our
     // todo disable btn_leave_at for 24 our
-    // todo use current location to prevent register from other place
-    private var state : Int = 0
+    private lateinit var come_at : MaterialButton
+    private lateinit var leave_at : MaterialButton
+    private var state: Int = 0
+    private var time_remaining : Long = 5000
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scanner)
@@ -55,32 +61,51 @@ class Scanner : AppCompatActivity() {
         userPreferences = UserPreferences(this)
         scannView = findViewById(R.id.scannerView)
         codeScanner = CodeScanner(this, scannView as CodeScannerView)
-
         /** ---------------------------------------------------------------------------- */
         state = intent.getIntExtra("state", 0)
         codeScanner!!.decodeCallback =
-            DecodeCallback { result: Result -> runOnUiThread {
-                if(state == 0){
-                    setEmployeeDailyRecord(authorization = userPreferences.getUserAuth(), code_string =  result.text)
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        // todo fix btn
+            DecodeCallback { result: Result ->
+                runOnUiThread {
+                    if (state == 0) {
+                        setEmployeeDailyRecord(
+                            authorization = userPreferences.getUserAuth(),
+                            code_string = result.text
+                        )
                         GlobalMembers.BTN_COME_AT_STATE = false
-                    }, 10000)
-                } else {
-                    updateEmployeeDailyRecords(authorization = userPreferences.getUserAuth(),GlobalMembers.DAILY_RECORD_ID ,code_string =  result.text)
+                        Log.e("btn before click", GlobalMembers.BTN_COME_AT_STATE.toString())
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            GlobalMembers.BTN_COME_AT_STATE = true
+                            Log.e("btn come at", GlobalMembers.BTN_COME_AT_STATE.toString())
+                        }, time_remaining)
 
-                    GlobalMembers.BTN_COME_AT_STATE = false
+                    } else {
+
+                        updateEmployeeDailyRecords(
+                            authorization = userPreferences.getUserAuth(),
+                            GlobalMembers.DAILY_RECORD_ID,
+                            code_string = result.text
+                        )
+                        GlobalMembers.BTN_LEAVE_AT_STATE = false
+                        Log.e("BTN_LEAVE_AT_STATE", GlobalMembers.BTN_LEAVE_AT_STATE.toString())
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            GlobalMembers.BTN_LEAVE_AT_STATE = true
+                            Log.e("BTN_LEAVE_AT_STATE", GlobalMembers.BTN_LEAVE_AT_STATE.toString())
+                        }, time_remaining)
+                    }
+
+                    this.finish()
+                    Toast.makeText(this, "you are register successfully", Toast.LENGTH_SHORT).show()
                 }
-                this.onBackPressed()
-            } }
+            }
         scannView!!.setOnClickListener { codeScanner!!.startPreview() }
     }
+    /** ========================================================================================= */
 
     override fun onResume() {
         super.onResume()
         requestForCamera()
     }
-
+    /** ========================================================================================= */
     fun requestForCamera() {
         Dexter.withActivity(this).withPermission(Manifest.permission.CAMERA)
             .withListener(object : PermissionListener {
@@ -108,11 +133,11 @@ class Scanner : AppCompatActivity() {
 
     /** ========================================================================================= */
     // todo fix the function
-    private fun setEmployeeDailyRecord(authorization: String, code_string: String){
+    private fun setEmployeeDailyRecord(authorization: String, code_string: String) {
         val auth = authorization
-        val userInterface : LoginInterface = ServiceBuilder.buildService(LoginInterface::class.java)
+        val userInterface: LoginInterface = ServiceBuilder.buildService(LoginInterface::class.java)
         // set current come at time
-        val codeRequest : CodeRequest = CodeRequest(code_string = code_string, come_at = getDate())
+        val codeRequest: CodeRequest = CodeRequest(code_string = code_string, come_at = getDate())
         val loginRequest: Call<EmployeeDailyRecordResponse> = userInterface.addEmployeeDailyRecords(
             auth, codeRequest
         )
@@ -126,8 +151,8 @@ class Scanner : AppCompatActivity() {
                 Log.e("set response", response.headers().toString())
                 if (response.isSuccessful) {
                     dailyRecordResponse = response.body()!!
-                    Log.e("set employee", GlobalMembers.DAILY_RECORD_ID )
-                    GlobalMembers.DAILY_RECORD_ID  = response.body()!!._id
+                    Log.e("set employee", GlobalMembers.DAILY_RECORD_ID)
+                    GlobalMembers.DAILY_RECORD_ID = response.body()!!._id
                     GlobalMembers.DAILY_RECORD_ID = dailyRecordResponse._id
                 }
             }
@@ -146,17 +171,18 @@ class Scanner : AppCompatActivity() {
     // todo fix the function
     private fun updateEmployeeDailyRecords(
         authorization: String,
-        _id : String,
+        _id: String,
         code_string: String
-    ){
+    ) {
         val auth = authorization
-        val userInterface : LoginInterface = ServiceBuilder.buildService(LoginInterface::class.java)
+        val userInterface: LoginInterface = ServiceBuilder.buildService(LoginInterface::class.java)
         // set current leave at time
-        val codeRequest : CodeRequest = CodeRequest(code_string = code_string, leave_at = getDate())
+        val codeRequest: CodeRequest = CodeRequest(code_string = code_string, leave_at = getDate())
 
-        val loginRequest: Call<EmployeeDailyRecordResponse> = userInterface.updateEmployeeDailyRecords(
-            auth, _id, codeRequest
-        )
+        val loginRequest: Call<EmployeeDailyRecordResponse> =
+            userInterface.updateEmployeeDailyRecords(
+                auth, _id, codeRequest
+            )
 
         loginRequest.enqueue(object : retrofit2.Callback<EmployeeDailyRecordResponse> {
             override fun onResponse(
@@ -183,7 +209,7 @@ class Scanner : AppCompatActivity() {
     /** ========================================================================================= */
 
     @SuppressLint("SimpleDateFormat")
-    fun getDate(): String{
+    fun getDate(): String {
         val calendar: Calendar = Calendar.getInstance()
         val mdformat = SimpleDateFormat("hh:mm:ss")
         return mdformat.format(calendar.time).toString()

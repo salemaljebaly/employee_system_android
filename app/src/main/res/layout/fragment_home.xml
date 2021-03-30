@@ -277,10 +277,26 @@
             </androidx.cardview.widget.CardView>
 
 
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:visibility="visible"
+                android:layout_height="250dp">
+                <LinearLayout
+                    android:id="@+id/employee_select_map"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                    <fragment
+                        android:name="com.almaki.employeeabsense.ui.MapsFragment"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="250dp" />
+                </LinearLayout>
+
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
-
-
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/logout"

@@ -9,7 +9,6 @@ object ServiceBuilder {
 
     private const val USER_URL : Int = 0
     private const val PROFILE_URL : Int = 1
-    // todo change link from development to production link https://warm-retreat-12818.herokuapp.com/
     private const val BASE_URL : String = "https://warm-retreat-12818.herokuapp.com/"
 
     // Create OkHttpClient

@@ -74,6 +74,29 @@ class UserLocation (val context: Context){
         }
     }
 
+    fun getLastLocationAsLatLng() : LatLng{
+        var latLng : LatLng = LatLng(0.0, 0.0)
+        if(this.checkPermission()){
+            if(isLocationEnabled()){
+                fusedLocationProviderClient.lastLocation.addOnCompleteListener {task->
+                    var location: Location? = task.result
+                    if(location == null){
+                        NewLocationData()
+                    }else{
+                        GlobalMembers.latLag = LatLng(location.latitude, location.longitude)
+                        latLng = LatLng(location.latitude, location.longitude)
+                    }
+                }
+            }else{
+                Toast.makeText(context,"Please Turn on Your device Location",Toast.LENGTH_SHORT).show()
+            }
+        }else{
+            requestPermission()
+        }
+
+        return latLng
+    }
+
 
     fun NewLocationData(){
         val locationRequest =  LocationRequest()
@@ -84,7 +107,7 @@ class UserLocation (val context: Context){
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
         if(checkPermission()){
             fusedLocationProviderClient.requestLocationUpdates(
-                locationRequest,locationCallback,Looper.myLooper()
+                locationRequest,locationCallback,Looper.getMainLooper()
             )
         }
     }
@@ -92,7 +115,7 @@ class UserLocation (val context: Context){
 
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
-            var lastLocation: Location = locationResult.lastLocation
+            val lastLocation: Location = locationResult.lastLocation
             Log.d("Debug:","your last last location: "+ lastLocation.longitude.toString())
         }
     }
