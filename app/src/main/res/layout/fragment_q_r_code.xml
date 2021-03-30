@@ -7,7 +7,6 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".ui.QRCodeFragment">
-    <!-- todo add icon   -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_come_at"
         android:layout_marginStart="10dp"

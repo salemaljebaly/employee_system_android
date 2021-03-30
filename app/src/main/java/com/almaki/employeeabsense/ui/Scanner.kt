@@ -48,8 +48,6 @@ class Scanner : AppCompatActivity() {
     private lateinit var userPreferences: UserPreferences
     private lateinit var dailyRecordResponse: EmployeeDailyRecordResponse
 
-    // todo disable btn_come_at for 24 our
-    // todo disable btn_leave_at for 24 our
     private lateinit var come_at : MaterialButton
     private lateinit var leave_at : MaterialButton
     private var state: Int = 0
@@ -132,7 +130,6 @@ class Scanner : AppCompatActivity() {
 
 
     /** ========================================================================================= */
-    // todo fix the function
     private fun setEmployeeDailyRecord(authorization: String, code_string: String) {
         val auth = authorization
         val userInterface: LoginInterface = ServiceBuilder.buildService(LoginInterface::class.java)
@@ -168,7 +165,6 @@ class Scanner : AppCompatActivity() {
     /** ========================================================================================= */
 
     /** ========================================================================================= */
-    // todo fix the function
     private fun updateEmployeeDailyRecords(
         authorization: String,
         _id: String,

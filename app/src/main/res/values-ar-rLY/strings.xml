@@ -9,8 +9,8 @@
     <string name="employee_record_dialy">تسجيل حضور يومي</string>
     <string name="Home">الرئيسية</string>
     <string name="about">حول التطبيق</string>
-    <string name="attendance_registration">تسجيل حظور</string>
-    <string name="record_attendance_absence">تسجيل الحظور والأنصراف</string>
+    <string name="attendance_registration">تسجيل حضور</string>
+    <string name="record_attendance_absence">تسجيل الحضور والأنصراف</string>
     <string name="employee_location">موقع الموظف</string>
     <string name="employee_occupation">الوظيفة</string>
     <string name="employee_birth_date">تاريخ الميلاد</string>

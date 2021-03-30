@@ -56,7 +56,6 @@ class TimelineFragment : Fragment() {
 
 
     /** ========================================================================================= */
-    // todo fix the function
     private fun getEmployeeDailyRecords(authorization: String){
         val auth = authorization
         val employeeInterface : LoginInterface = ServiceBuilder.buildService(LoginInterface::class.java)

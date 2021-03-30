@@ -43,7 +43,6 @@
             android:layout_marginTop="24dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp">
-            <!-- todo fix stroke inaction and active mode for all inputs -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/employee_username_container"
                 android:elevation="0dp"

@@ -36,7 +36,6 @@ class HomeFragment : Fragment() , View.OnClickListener{
         // enable option menu in this fragment
         setHasOptionsMenu(true)
         userPreferences = UserPreferences(requireContext())
-        // todo run map fragment with out ui
     }
     /** ========================================================================================= */
     override fun onCreateView(
